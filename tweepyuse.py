@@ -6,8 +6,8 @@ import json
 MAX_QUERIES = 2
  
 #提交你的Key和secret
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+auth = tweepy.OAuthHandler(setting.consumer_key, setting.consumer_secret)
+auth.set_access_token(setting.access_token, setting.access_token_secret)
  
 #获取类似于内容句柄的东西
 api = tweepy.API(auth)
