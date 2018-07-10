@@ -5,12 +5,6 @@ import json
 #抓取次数
 MAX_QUERIES = 2
  
-#填写twitter提供的开发Key和secret
-consumer_key = '6HAZRSKC0sVJwVwZQnbL8b41p'
-consumer_secret = 'zB9UYOk3Z7fepuE3RHkISfMrp2OfyWHCkXnJKVNmrayhLaLmse'
-access_token = '1014966707797053440-XdR2QYmNWjvMrclKoRpFMacgZKKIDj'
-access_token_secret = 'YhMgLOOcMzSafPkrrpjsjZha9cYE95CGImNIxzi4tRCEb'
- 
 #提交你的Key和secret
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
