@@ -3,9 +3,10 @@ import tweepy
 import json
 from private import *
 import pymysql
+import datetime
 
 #抓取次数
-MAX_QUERIES = 2
+MAX_QUERIES = 400
  
 #提交你的Key和secret
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -17,6 +18,7 @@ api = tweepy.API(auth)
 i = MAX_QUERIES
 tweet_id = []
 MAX_ID = 10
+
 
 #连接数据库
 def executeSql(sql,values):
@@ -31,10 +33,12 @@ def executeSql(sql,values):
     # 关闭连接
     conn.close()
 
+GMT_FORMAT = '%a %b %d %H:%M:%S %z %Y'
 def insertNews(search_results):
     for tweet in search_results:
         data = tweet._json
-        tweetObj = [json.dumps(data["id"]),json.dumps(data["created_at"]),json.dumps(data["user"]["screen_name"]),
+        tweetObj = [json.dumps(data["id"]),datetime.datetime.strptime(data["created_at"],GMT_FORMAT),
+                    json.dumps(data["user"]["screen_name"]),
                     json.dumps(data["favorite_count"]),json.dumps(data["retweet_count"]),json.dumps(data["text"]),json.dumps(data["source"]),
                     json.dumps(data["place"]["country_code"] if data['place'] != None else 'NULL'),json.dumps(data["user"]["location"]),
                     json.dumps(data["coordinates"]["coordinates"][0] if data["coordinates"] != None else 'NULL'),
@@ -42,7 +46,7 @@ def insertNews(search_results):
  
         sql = "insert into codeine(_id,created_at,screen_name,favorite_count,retweet_count,text,source,country_code,location,latitude,longitude)"\
              "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        
+
         executeSql(sql=sql,values=tweetObj)
         
         tweet_id.append(tweet._json["id"])
@@ -61,10 +65,11 @@ while i > 0:
         MAX_ID = min(tweet_id)
     
     else:
-        search_results = api.search(q='codeine', count=100, lang='en', max_id = MAX_ID-1)
+        search_results = api.search(q='codeine', count=100, lang='en', max_id = MAX_ID-1,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
         
         tweet_id = insertNews(search_results)
 
         MAX_ID = min(tweet_id)
     
+    print(i)
     i -= 1
