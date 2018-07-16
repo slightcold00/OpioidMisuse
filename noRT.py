@@ -1,6 +1,6 @@
 import csv
 
-headers = ['_id','created_at','screen_name','favorite_count','retweet_count','text,source','country_code','location','latitude','longitude']
+headers = ['_id','created_at','screen_name','favorite_count','retweet_count','text','source','country_code','location','latitude','longitude']
 rows = []
 
 with open('codeine.csv') as f:
