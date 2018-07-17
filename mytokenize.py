@@ -17,14 +17,14 @@ stopwords = [u'rt', u're', u'i', u'me', u'my', u'myself', u'we', u'our', u'ours'
              u'again', u'further', u'then', u'once', u'here', u'there', u'when', u'where', u'why', u'how', u'all',
              u'any', u'both', u'each', u'few', u'more', u'most', u'other', u'some', u'such', u'no', u'nor', u'not',
              u'only', u'own', u'same', u'so', u'than', u'too', u'very', u's', u't', u'can', u'will', u'just', u'don',
-             u'should', u'now']
+             u'should', u'now', u'im', u'dont']
 
 
 
 # tokenize函数对tweets内容进行分词
 def tokenize(text):
     tokens = []
-    text = re.sub('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '',
+    text = re.sub('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',' ',
                   text)  # to replace url with ''
     text = text.encode('utf-8').decode('unicode_escape').encode('ascii','ignore') # ingnore unicode
     text = text.decode('utf-8')

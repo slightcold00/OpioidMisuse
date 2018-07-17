@@ -1,4 +1,4 @@
-import tokenize
+import mytokenize
 import csv
 import numpy as np
 
@@ -25,11 +25,10 @@ def doc2vec(document):
         except:
             continue
 
-    #vec = doc_vec / float(tot_words)
     return vec
 
 for row in f_csv:
     raw_text = row['text']
-    token_text = tokenize.tokenize(raw_text)
+    token_text = mytokenize.tokenize(raw_text)
     tweet_text = doc2vec(token_text)
     trn_data.append(tweet_text)

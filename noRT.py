@@ -8,7 +8,6 @@ with open('data/codeine.csv') as f:
     for row in f_csv:
         raw_text = row[5]
         index = max(raw_text.find('RT'),raw_text.find('codeine crazy'),raw_text.find('Codeine Crazy'),raw_text.find('Codeine crazy'))
-        print(index)
         if index < 0:
             rows.append(row)
 
