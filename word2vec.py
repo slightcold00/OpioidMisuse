@@ -1,6 +1,5 @@
 import logging
 import os.path
-import sys
 import multiprocessing
 import csv
 
@@ -8,24 +7,8 @@ from gensim.corpora import WikiCorpus
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 
-import mytokenize
 
-output = open('data/words.txt', 'w+')
-#read raw data
-f = open('data/codeine_noRT.csv')
-f_csv = csv.DictReader(f)
-
-space = ' '
-
-for row in f_csv:
-    raw_text = row['text']
-    token_text = mytokenize.tokenize(raw_text)
-    output.write(space.join(token_text) + '\n')
-
-f.close()
-output.close()
-
-inp = 'data/words.txt'
+inp = 'data/codeine_word.txt'
 outp1 = 'web_words.model'
 outp2 = 'web_words.vector'
 
