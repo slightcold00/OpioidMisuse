@@ -7,7 +7,7 @@ from gensim.models.word2vec import LineSentence
 model = Word2Vec.load('web_words.model')
 
 # 导入新增语料
-new_corpus = LineSentence('data/percocet_word.txt')
+new_corpus = LineSentence('data/codeine_word2.txt')
 
 # 在线训练模型
 model.train(new_corpus,total_examples=model.corpus_count,epochs=model.epochs)

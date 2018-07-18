@@ -8,7 +8,7 @@ from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 
 
-inp = 'data/codeine_word.txt'
+inp = 'data/codeine_word2.txt'
 outp1 = 'web_words.model'
 outp2 = 'web_words.vector'
 

@@ -9,7 +9,7 @@ plt.xlabel("number of related tweets")
 plt.show()
 
 name_list = ['codeine','fentanyl','oxycontin','percocet']
-num_list = [5401,6091,1245,1358]
+num_list = [6324,6091,1245,1358]
 plt.barh(range(len(num_list)), num_list,tick_label = name_list)
 plt.ylabel("kind of opioid")
 plt.xlabel("number of related tweets(no RT)")

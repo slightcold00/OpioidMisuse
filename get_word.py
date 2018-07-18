@@ -1,7 +1,7 @@
 import csv
 import mytokenize
 
-output = open('data/codeine_word.txt', 'w+')
+output = open('data/codeine_word2.txt', 'w+')
 #read raw data
 f = open('data/codeine_noRT.csv')
 f_csv = csv.DictReader(f)

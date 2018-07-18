@@ -31,10 +31,9 @@ def tokenize(text):
     text = remove_spl_char_regex.sub(" ", text)  # Remove special characters
     text = text.lower()
 
+#can add not in stopwords and word 
     for word in text.split():
-        if word not in stopwords \
-                and word not in string.punctuation \
-                and len(word) > 1 \
+        if word not in string.punctuation and len(word) > 1 \
                 and word != '``':
             tokens.append(word)
     return tokens
