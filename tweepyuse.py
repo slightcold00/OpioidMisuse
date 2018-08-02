@@ -44,7 +44,7 @@ def insertNews(search_results):
                     json.dumps(data["coordinates"]["coordinates"][0] if data["coordinates"] != None else 'NULL'),
                     json.dumps(data["coordinates"]["coordinates"][1] if data["coordinates"] != None else 'NULL')]
  
-        sql = "insert into codeine(_id,created_at,screen_name,favorite_count,retweet_count,text,source,country_code,location,latitude,longitude)"\
+        sql = "insert into oxycontin(_id,created_at,screen_name,favorite_count,retweet_count,text,source,country_code,location,latitude,longitude)"\
              "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
         executeSql(sql=sql,values=tweetObj)
@@ -58,14 +58,14 @@ def insertNews(search_results):
 while i > 0:
     if MAX_ID == 10:
         #按关键字搜索(q = 关键字 ,count = 返回的数据量 . 推特一次最多返回100条)
-        search_results = api.search(q='codeine',lang='en',count=100)
+        search_results = api.search(q='oxycontin',lang='en',count=100)
         
         tweet_id = insertNews(search_results)
 
         MAX_ID = min(tweet_id)
     
     else:
-        search_results = api.search(q='codeine', count=100, lang='en', max_id = MAX_ID-1,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+        search_results = api.search(q='oxycontin', count=100, lang='en', max_id = MAX_ID-1,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
         
         tweet_id = insertNews(search_results)
 
