@@ -7,6 +7,7 @@ from sklearn.datasets import make_blobs
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.externals import joblib
 
 rf=RandomForestRegressor(n_estimators=100,
                          criterion='mse',
@@ -24,7 +25,8 @@ rf=RandomForestRegressor(n_estimators=100,
                         verbose=0,
                         warm_start=False)
 rf.fit(trn_data,lable_data)  
-preds = rf.predict(test_data);  
+preds = rf.predict(test_data)
+joblib.dump(rf,'finalRF.model')
 
 TP = 0
 FP = 0
